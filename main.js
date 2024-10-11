@@ -22,8 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const value = this.getAttribute('data-value');
             if (value === 'clear') {
                 answerInput.value = ''; // Clear input
+                answerInput.classList.remove('is-invalid'); // Remove red border
             } else {
                 answerInput.value += value; // Append value to input
+                answerInput.classList.remove('is-invalid'); // Remove red border
             }
         });
     });
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startTimer();
     }
 
-    // Function to generate random number based on difficulty and limit
+    // Function to generate random number based on limit
     function generateRandomNumber(limit) {
         return Math.floor(Math.random() * limit) + 1;
     }
@@ -121,9 +123,16 @@ document.addEventListener('DOMContentLoaded', function() {
             score++;
             scoreDisplay.textContent = `Score: ${score}`;
             answerInput.value = '';
+            answerInput.classList.remove('is-invalid'); // Remove red border
             generateProblem();
         } else {
+            answerInput.classList.add('is-invalid'); // Add red border
             showNotification('Incorrect answer. Try again!', 'danger');
+            // Clear the input after a short delay for user feedback
+            setTimeout(() => {
+                answerInput.value = ''; // Clear input for new attempt
+                answerInput.classList.remove('is-invalid'); // Remove red border
+            }, 2000);
         }
     }
 
@@ -132,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showNotification(`Session ended! Your final score is ${score}.`, 'success');
         problemArea.style.display = 'none';
         answerInput.value = '';
+        answerInput.classList.remove('is-invalid'); // Remove red border
     }
 
     // Function to show notification
