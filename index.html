@@ -9,6 +9,9 @@
     .is-invalid {
       border: 2px solid red; /* Red border for invalid input */
     }
+    .btn.btn-success{
+      height: 48px;
+    }
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -110,7 +113,7 @@
         <button class="keypad-button" data-value="0">0</button>
         <button class="keypad-button" data-value="clear">C</button>
       </div>
-      <button class="btn btn-success mt-2" id="submitKeypad">Submit Answer</button>
+      <button class="btn btn-success btn-block mt-2" id="submitKeypad">Submit Answer</button>
     </div>
 
     <!-- Score and Timer -->
