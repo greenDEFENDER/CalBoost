@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.floor(Math.random() * limit) + 1;
     }
 
-    // Function to generate math problem
+  /*  // Function to generate math problem
     function generateProblem() {
         const numOperands = parseInt(document.getElementById('numOperands').value);
         const operations = [];
@@ -101,7 +101,74 @@ document.addEventListener('DOMContentLoaded', function() {
         currentProblem = problemText;
         currentAnswer = result;
         document.getElementById('mathProblem').textContent = currentProblem;
+    } */
+
+    // Function to generate math problem
+function generateProblem() {
+    const numOperands = parseInt(document.getElementById('numOperands').value);
+    const operations = [];
+    const difficulty = document.getElementById('difficulty').value;
+
+    if (document.getElementById('addition').checked) operations.push('+');
+    if (document.getElementById('subtraction').checked) operations.push('-');
+    if (document.getElementById('multiplication').checked) operations.push('*');
+    if (document.getElementById('division').checked) operations.push('/');
+    if (document.getElementById('squares').checked) operations.push('squares');
+    if (document.getElementById('cubes').checked) operations.push('cubes');
+
+    if (operations.length === 0) {
+        alert('Please select at least one operation!');
+        return;
     }
+
+    let operands = [];
+    for (let i = 0; i < numOperands; i++) {
+        if (operations.includes('squares')) {
+            operands.push(generateRandomNumber(difficulty, 50));
+        } else if (operations.includes('cubes')) {
+            operands.push(generateRandomNumber(difficulty, 30));
+        } else {
+            operands.push(generateRandomNumber(difficulty));
+        }
+    }
+
+    let operation = operations[Math.floor(Math.random() * operations.length)];
+
+    if (operation === '/') {
+        // Ensure numerator is greater than denominator and results in a whole number
+        let denominator = operands[1];
+        let numerator;
+        do {
+            numerator = generateRandomNumber(difficulty);
+        } while (numerator <= denominator || numerator % denominator !== 0);
+        
+        currentProblem = ${numerator} ${operation} ${denominator};
+        currentAnswer = numerator / denominator;
+    } else if (operation === '-') {
+        // Ensure no negative results for subtraction
+        let operand1 = operands[0];
+        let operand2;
+        do {
+            operand2 = generateRandomNumber(difficulty);
+        } while (operand1 < operand2);
+        
+        currentProblem = ${operand1} ${operation} ${operand2};
+        currentAnswer = operand1 - operand2;
+    } else if (operation === 'squares') {
+        const operand = operands[0];
+        currentProblem = ${operand} squared;
+        currentAnswer = operand * operand;
+    } else if (operation === 'cubes') {
+        const operand = operands[0];
+        currentProblem = ${operand} cubed;
+        currentAnswer = operand * operand * operand;
+    } else {
+        currentProblem = operands.join( ${operation} );
+        currentAnswer = eval(currentProblem);
+    }
+
+    document.getElementById('mathProblem').textContent = currentProblem;
+}
 
     // Function to start timer
     function startTimer() {
