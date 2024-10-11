@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 answerInput.value = ''; // Clear input for new attempt
                 answerInput.classList.remove('is-invalid'); // Remove red border
-            }, 1500);
+            }, 350);
         }
     }
 
