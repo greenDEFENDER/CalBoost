@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.floor(Math.random() * limit) + 1;
     }
 
-  /*  // Function to generate math problem
+   // Function to generate math problem
     function generateProblem() {
         const numOperands = parseInt(document.getElementById('numOperands').value);
         const operations = [];
@@ -101,9 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
         currentProblem = problemText;
         currentAnswer = result;
         document.getElementById('mathProblem').textContent = currentProblem;
-    } */
+    } 
 
-    // Function to generate math problem
+   /* // Function to generate math problem
 function generateProblem() {
     const numOperands = parseInt(document.getElementById('numOperands').value);
     const operations = [];
@@ -168,7 +168,7 @@ function generateProblem() {
     }
 
     document.getElementById('mathProblem').textContent = currentProblem;
-}
+} */
 
     // Function to start timer
     function startTimer() {
