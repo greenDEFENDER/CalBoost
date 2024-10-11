@@ -127,12 +127,12 @@ document.addEventListener('DOMContentLoaded', function() {
             generateProblem();
         } else {
             answerInput.classList.add('is-invalid'); // Add red border
-            showNotification('Incorrect answer. Try again!', 'danger');
+           // showNotification('Incorrect answer. Try again!', 'danger');
             // Clear the input after a short delay for user feedback
             setTimeout(() => {
                 answerInput.value = ''; // Clear input for new attempt
                 answerInput.classList.remove('is-invalid'); // Remove red border
-            }, 2000);
+            }, 1500);
         }
     }
 
