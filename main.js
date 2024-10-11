@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.floor(Math.random() * limit) + 1;
     }
 
-   // Function to generate math problem
+  /* // Function to generate math problem
     function generateProblem() {
         const numOperands = parseInt(document.getElementById('numOperands').value);
         const operations = [];
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentProblem = problemText;
         currentAnswer = result;
         document.getElementById('mathProblem').textContent = currentProblem;
-    } 
+    } */
 
    /* // Function to generate math problem
 function generateProblem() {
@@ -169,6 +169,84 @@ function generateProblem() {
 
     document.getElementById('mathProblem').textContent = currentProblem;
 } */
+
+    // Function to generate math problem
+function generateProblem() {
+    const numOperands = parseInt(document.getElementById('numOperands').value);
+    const operations = [];
+    const maxSquare = 50;  // Max limit for squares
+    const maxCube = 30;    // Max limit for cubes
+
+    if (document.getElementById('addition').checked) operations.push('+');
+    if (document.getElementById('subtraction').checked) operations.push('-');
+    if (document.getElementById('multiplication').checked) operations.push('*');
+    if (document.getElementById('division').checked) operations.push('/');
+    if (document.getElementById('squares').checked) operations.push('square');
+    if (document.getElementById('cubes').checked) operations.push('cube');
+
+    if (operations.length === 0) {
+        showNotification('Please select at least one operation!', 'danger');
+        return;
+    }
+
+    let problemText = '';
+    let result;
+
+    const selectedOperation = operations[Math.floor(Math.random() * operations.length)];
+
+    // Generate problem for squares
+    if (selectedOperation === 'square') {
+        const number = generateRandomNumber(maxSquare);
+        problemText = ${number}²;
+        result = number * number;
+    }
+    // Generate problem for cubes
+    else if (selectedOperation === 'cube') {
+        const number = generateRandomNumber(maxCube);
+        problemText = ${number}³;
+        result = number * number * number;
+    } else {
+        // For other operations
+        let operands = [];
+        for (let i = 0; i < numOperands; i++) {
+            operands.push(generateRandomNumber(10)); // Generate random operands between 1 and 10
+        }
+
+        // Handle division to ensure whole number result
+        if (selectedOperation === '/') {
+            let numerator;
+            let denominator;
+            do {
+                numerator = operands[0] = generateRandomNumber(10);
+                denominator = operands[1] = generateRandomNumber(1, numerator); // Ensure numerator > denominator
+            } while (numerator % denominator !== 0); // Ensure division results in whole number
+            
+            result = numerator / denominator;
+            problemText = ${numerator} / ${denominator};
+        } 
+        // Handle subtraction to ensure no negative results
+        else if (selectedOperation === '-') {
+            let operand1;
+            let operand2;
+            do {
+                operand1 = operands[0] = generateRandomNumber(10);
+                operand2 = operands[1] = generateRandomNumber(1, operand1); // Ensure no negative results
+            } while (operand1 < operand2); // Repeat until operand1 is greater than operand2
+            
+            result = operand1 - operand2;
+            problemText = ${operand1} - ${operand2};
+        } else {
+            // For addition and multiplication
+            result = operands.reduce((acc, curr) => eval(${acc} ${selectedOperation} ${curr}));
+            // Build the problem text
+            problemText = operands.join( ${selectedOperation} );
+        }
+    }
+
+    currentProblem = problemText;
+    currentAnswer = result;
+    document.getElementById('mathProblem').textContent = currentProblem;
+}
 
     // Function to start timer
     function startTimer() {
