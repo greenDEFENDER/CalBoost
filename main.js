@@ -135,7 +135,7 @@ function generateDivisibleOperands(difficulty) {
   const dividend = divisor * (Math.floor(Math.random() * getMaxValue(difficulty)) + 1);
   return [dividend, divisor];
 }
-
+/*
 // Handle keypad input
 keypadButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -148,6 +148,32 @@ keypadButtons.forEach(button => {
     }
   });
 });
+*/
+
+// Handle keypad input
+keypadButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const value = button.getAttribute('data-value');
+    
+    if (value === 'clear') {
+      answerInput.value = '';
+      answerInput.classList.remove('is-invalid');
+    } else if (value === '-') {
+      // Toggle '-' at the beginning of the input
+      if (answerInput.value.startsWith('-')) {
+        // Remove '-' if it's already there
+        answerInput.value = answerInput.value.substring(1);
+      } else {
+        // Prepend '-' to the input if it's not there
+        answerInput.value = '-' + answerInput.value;
+      }
+    } else {
+      // Append the number to the input value
+      answerInput.value += value;
+    }
+  });
+});
+
 
 // Handle answer submission
 submitKeypad.addEventListener('click', () => {
@@ -169,6 +195,7 @@ function checkAnswer(userAnswer) {
     answerInput.classList.remove('is-invalid');
     generateProblem(); // Move to the next problem only if the answer is correct
   } else {
+    score -= 2;
     answerInput.classList.add('is-invalid'); // Keep showing the same question until correct answer is provided
   }
 }
