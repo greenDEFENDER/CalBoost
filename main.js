@@ -249,6 +249,8 @@ function endSession() {
   problemArea.style.display = 'none';
   settingsForm.style.display = 'block';
 
+  totalQuestions--;
+
   // Show total score
   showNotificationForEnd(`Session ended! Your total score is ${score} out of ${totalQuestions}.`, 'info');
 
