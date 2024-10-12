@@ -191,12 +191,13 @@ submitKeypad.addEventListener('click', () => {
 function checkAnswer(userAnswer) {
   if (userAnswer === currentAnswer) {
     score++;
-    scoreElement.textContent = Score: ${score};
+    scoreElement.textContent = 'Score: ' + score;
     answerInput.value = '';
     answerInput.classList.remove('is-invalid');
     generateProblem(); // Move to the next problem only if the answer is correct
   } else {
     score -= 2;
+    scoreElement.textContent = 'Score: ' + score;
     answerInput.classList.add('is-invalid'); // Keep showing the same question until correct answer is provided
   }
 }
