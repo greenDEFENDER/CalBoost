@@ -121,11 +121,11 @@ function generateOperands(numOperands, difficulty) {
 function getMaxValue(difficulty) {
   switch (difficulty) {
     case 'easy':
-      return 10;
+      return 20;
     case 'medium':
       return 50;
     case 'hard':
-      return 100;
+      return 1000;
   }
 }
 
