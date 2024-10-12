@@ -191,6 +191,7 @@ submitKeypad.addEventListener('click', () => {
 function checkAnswer(userAnswer) {
   if (userAnswer === currentAnswer) {
     score++;
+    scoreElement.textContent = Score: ${score};
     answerInput.value = '';
     answerInput.classList.remove('is-invalid');
     generateProblem(); // Move to the next problem only if the answer is correct
@@ -208,6 +209,15 @@ function showNotification(message, type) {
   setTimeout(() => {
     notification.style.display = 'none';
   }, 3000);
+}
+
+function showNotificationForEnd(message, type) {
+  notification.textContent = message;
+  notification.className = `alert alert-${type}`;
+  notification.style.display = 'block';
+  setTimeout(() => {
+    notification.style.display = 'none';
+  }, 15000);
 }
 
 // Timer function
@@ -239,7 +249,7 @@ function endSession() {
   settingsForm.style.display = 'block';
 
   // Show total score
-  showNotification(`Session ended! Your total score is ${score} out of ${totalQuestions}.`, 'info');
+  showNotificationForEnd(`Session ended! Your total score is ${score} out of ${totalQuestions}.`, 'info');
 
   // Reset values for next session
   score = 0;
