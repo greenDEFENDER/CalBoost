@@ -31,6 +31,7 @@ To run the Math Challenge project locally, follow these steps:
 3. **Set Difficulty Level**: Choose the difficulty level (Easy, Medium, Hard).
 4. **Set Session Duration**: Input the length of the practice session in minutes.
 5. **Start Challenge**: Click on the "Start Challenge" button to begin practicing.
+6. **Start New Session**: To start a new session during an ongoing session refresh the page.
 
 ### Keypad Input
 Users can enter their answers using the on-screen keypad, which includes numbers 0-9, a clear button (C), and the ability to input negative numbers.
