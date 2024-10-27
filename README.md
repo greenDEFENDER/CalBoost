@@ -58,3 +58,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - Thanks to Bootstrap for the responsive design framework.
 - Thanks to all contributors who have helped make this project better!
+
+  ## Live Demo
+
+You can view the live version of the project at the following link:
+
+[CalBoost Live Demo](https://greendefender.github.io/CalBoost/)
